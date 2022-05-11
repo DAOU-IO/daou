@@ -27,7 +27,7 @@ const Home: NextPage = () => {
             <Link href='https://github.com/DAOU-IO/daou' >
               <Image
                 boxSize='48px'
-                src='/images/GitHub.png'
+                src='/images/Github.png'
                 alt='Github logo'
               />
             </Link>
