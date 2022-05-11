@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import MetamaskButton from '../conponents/MetaMaskButton';
+import MetamaskButton from '../components/MetamaskButton';
 
 import { 
       Box, 
