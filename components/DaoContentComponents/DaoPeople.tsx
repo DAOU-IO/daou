@@ -92,8 +92,9 @@ const DaoPeople = () => {
                 <InputGroup>
                     <InputLeftElement 
                         pointerEvents='none'
-                        children={<SearchIcon color='whiteAlpha.700' w='25px' h='25px' />}
-                    />
+                    >
+                        <SearchIcon color='whiteAlpha.700' w='25px' h='25px' />
+                    </InputLeftElement>
                     <Input placeholder='Name or Address' borderColor='whiteAlpha.700' color="white" />
                 </InputGroup>
             </Box>
@@ -117,12 +118,5 @@ const DaoPeople = () => {
         </Box>
     );
 };
-
-const ListWithoutScrollBar = styled(List)`
-    ::-webkit-scrollbar {
-        width: 0;  /* Remove scrollbar space */
-        background: transparent;  /* Optional: just make scrollbar invisible */
-    }
-`;
 
 export default DaoPeople;
