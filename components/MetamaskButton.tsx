@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Image } from "@chakra-ui/image";
 import { Button } from "@chakra-ui/button";
-import { Box, Text } from "@chakra-ui/layout";
+import { Text } from "@chakra-ui/layout";
 
 const MetamaskButton = () => {
     return (
