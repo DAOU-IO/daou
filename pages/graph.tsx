@@ -4,12 +4,31 @@ import styled from "@emotion/styled";
 import { SettingsIcon, AddIcon } from '@chakra-ui/icons';
 import DaoNav from "../components/DaoNav";
 import React, { useState } from "react";
+import DaoInfo from "../components/DaoContentComponents/DaoInfo";
+import DaoOnboard from "../components/DaoContentComponents/DaoOnboard";
+import DaoPeople from "../components/DaoContentComponents/DaoPeople";
+import DaoTwitter from "../components/DaoContentComponents/DaoTwitter";
 
 export type daoNavType = "info" | "people" | "twitter" | "onboard";
 
 export const Graph: React.ElementType = () => {
 
-    const [daoNavState, setDaoNavState] = useState<daoNavType>("info");
+    const [daoNavState, setDaoNavState] = useState<daoNavType>("onboard");
+
+    const renderDaoContent = (daoNavState:daoNavType) => {
+        switch(daoNavState){
+            case "info":
+                return <DaoInfo/>;
+            case "people":
+                return <DaoPeople/>;
+            case "twitter":
+                return <DaoTwitter/>;
+            case "onboard":
+                return <DaoOnboard/>;
+            default:
+                return <DaoInfo/>;
+        }
+    }
 
     return (
         <Flex bg='blackAlpha.900' w="100%" h="100vh"   >
@@ -39,6 +58,7 @@ export const Graph: React.ElementType = () => {
             </Box>
             <Box w="25%" h="100vh" borderLeft="2px" borderColor='whiteAlpha.300' >
                 <DaoNav daoNavState={daoNavState} setDaoNavState={setDaoNavState} />
+                {renderDaoContent(daoNavState)}
             </Box>
         </Flex>
         
