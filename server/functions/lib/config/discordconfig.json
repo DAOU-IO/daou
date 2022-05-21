@@ -1,0 +1,14 @@
+{
+    "clientId": "976781814045769788",
+    "guildId": "976784803154251776",
+    "token": "OTc2NzgxODE0MDQ1NzY5Nzg4.GqwUOG.Sn7dQsCbi5GYsYHuyv6LrPR9FBuRS2F1_NVbBc",
+    "firebaseConfig": {
+        "apiKey": "AIzaSyAOClnLcwf4QELyaKVWCPzKsYqQNBpmA1s",
+        "authDomain": "social-data-75661.firebaseapp.com",
+        "projectId": "social-data-75661",
+        "storageBucket": "social-data-75661.appspot.com",
+        "messagingSenderId": "781304528657",
+        "appId": "1:781304528657:web:c0209ca8d977dfd95e56b0",
+        "measurementId": "G-5ZG7G21F47"
+    }
+}
