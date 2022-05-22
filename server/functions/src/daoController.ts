@@ -7,7 +7,7 @@ type Request = {
     params: { daoId: string }
 }
 
-const adddao = async (req: Request, res: Response) => {
+const addDao = async (req: Request, res: Response) => {
     const { name, about, discord_link, twitter, site } = req.body;
 
     try {
@@ -95,4 +95,4 @@ const deleteDao = async (req: Request, res: Response) => {
     }
 };
 
-export { adddao, getAllDaos, updateDao, deleteDao };
+export { addDao, getAllDaos, updateDao, deleteDao };
