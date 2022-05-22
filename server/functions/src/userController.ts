@@ -1,11 +1,10 @@
 import { Response } from "express";
 import { db } from "./config/firebase";
-import { FirebaseError } from '@firebase/util';
 import { User } from "./utils/type";
 
 type Request = {
     body: User,
-    params: {address: string}
+    params: { userId: string }
 }
 
 const addUser = async (req: Request, res: Response) => {
@@ -28,35 +27,25 @@ const addUser = async (req: Request, res: Response) => {
             message: "user added successfully",
             data: userObject,
         });
-    } catch(error) {
-        let errorMessage = "Failed to add add user."
-        if (error instanceof FirebaseError) {
-            res.status(500).json(error.message);
-        }
-        res.status(500).json(errorMessage);
+    } catch(error: any) {
+        res.status(500).json(error.message);
     }
 };
 
 const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const allUsers: User[] = [];
-        const querySnapshot = await db.collection("users").get();
-        querySnapshot.forEach((doc:any) => allUsers.push(doc.data()));
-        return res.status(200).json(allUsers);
-    } catch(error) {
-        let errorMessage = "Failed to get the user."
-        if (error instanceof FirebaseError) {
-            res.status(500).json(error.message);
-        }
-        return res.status(500).json(errorMessage);
+        const allUsers = await db.collection("users").get();
+        return res.status(200).json(allUsers.docs);
+    } catch(error:any) {
+        return res.status(500).json(error.message);
     }
 };
 
 const updateUser = async (req:Request, res:Response) => {
-    const { body: {avatar, accounts, messages, spark_count}, params:{ address } } = req;
+    const { body: {avatar, accounts, messages, spark_count}, params:{ userId } } = req;
 
     try {
-        const user = db.collection("entries").doc(address);
+        const user = db.collection("users").doc(userId);
         const currentData = (await user.get()).data() || {};
         const userObject = {
             avatar: avatar || currentData.avatar,
@@ -77,20 +66,16 @@ const updateUser = async (req:Request, res:Response) => {
             message: "user updated successfully",
             data: userObject
         })
-    } catch (error) {
-        let errorMessage = "Failed to update the user."
-        if (error instanceof FirebaseError) {
-            res.status(500).json(error.message);
-        }
-        return res.status(500).json(errorMessage);
+    } catch (error: any) {
+        return res.status(500).json(error.message);
     }
 };
 
 const deleteUser = async (req: Request, res: Response) => {
-    const { address } = req.params
+    const { userId } = req.params
   
     try {
-      const user = db.collection('entries').doc(address)
+      const user = db.collection('users').doc(userId);
   
       await user.delete().catch(error => {
         return res.status(400).json({
@@ -103,12 +88,8 @@ const deleteUser = async (req: Request, res: Response) => {
         status: 'success',
         message: 'user deleted successfully',
       })
-    } catch(error) { 
-        let errorMessage = "Failed to update the user."
-        if (error instanceof FirebaseError) {
-            res.status(500).json(error.message);
-        }
-        return res.status(500).json(errorMessage);
+    } catch(error:any) { 
+        return res.status(500).json(error.message);
     }
 };
 
