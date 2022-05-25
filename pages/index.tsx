@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import MetamaskButton from '../components/MetamaskButton';
+import WalletButton from '../components/WalletButton';
 
 import { 
       Box, 
@@ -24,13 +24,7 @@ const Home: NextPage = () => {
               alt='DAOU logo'
             />
             <Spacer />
-            <Link href='https://github.com/DAOU-IO/daou' >
-              <Image
-                boxSize='48px'
-                src='/images/Github.png'
-                alt='Github logo'
-              />
-            </Link>
+            <WalletButton />
         </Flex>
         <Box pl="5vh" pt="5vh" my="20px" borderTop="1px" borderBottom="1px" borderColor='whiteAlpha.900' h='38vh' >
           <Box>
@@ -40,11 +34,17 @@ const Home: NextPage = () => {
             <Text fontSize='6xl' color="whiteAlpha.900" >Make Frens in DAOs.</Text>
           </Box>
         </Box>
-        <Box mt='10vh' pl="5vh">
-          <MetamaskButton />
-        </Box>
-        <Box mt='22vh' pl="5vh" >
-          <Text fontSize='1xl' color="whiteAlpha.900" >Made With ❤️ By <Link href='https://twitter.com/fifteen42_' >Tingfei</Link></Text>
+        <Box mt='40vh' pl="5vh" >
+          <Text fontSize='1xl' color="whiteAlpha.900" >
+            Made With ❤️ By <Link href='https://twitter.com/fifteen42_' >Tingfei</Link>
+          </Text>
+          <Link href='https://github.com/DAOU-IO/daou' pb="5px" >
+            <Image
+              boxSize='24px'
+              src='/images/Github.png'
+              alt='Github logo'
+            />
+          </Link>
         </Box>
       </Box>
       <LogoImage

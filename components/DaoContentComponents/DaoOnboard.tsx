@@ -12,6 +12,10 @@ const DaoOnboard = () => {
     }
 
     return(
+        <>
+        <Box ml='3vh'>
+            <Text fontSize='2xl' color='whiteAlpha.700' >Dao Member Twitter</Text>
+        </Box>
         <Box m="3vh" >
             <List spacing={10}>
                 <ListItem color="white" >
@@ -46,6 +50,7 @@ const DaoOnboard = () => {
                 </ListItem>
             </List>
         </Box>
+        </>
     );
 };
 
