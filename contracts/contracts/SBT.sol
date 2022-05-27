@@ -33,6 +33,8 @@ contract SBT {
     event Update(address _soul);
     event SetProfile(address _profiler, address _soul);
     event RemoveProfile(address _profiler, address _soul);
+    event UpdateProfile(address _profiler, address _soul);
+
 
     constructor(string memory _name, string memory _ticker) {
       name = _name;
@@ -93,6 +95,11 @@ contract SBT {
 
     function listProfiles(address _soul) external view returns (address[] memory) {
         return profiles[_soul];
+    }
+
+    function updateProfile(address _soul, Soul memory _soulData) external {
+        soulProfiles[msg.sender][_soul] = _soulData;
+        emit UpdateProfile(msg.sender, _soul);
     }
 
     function hasProfile(address _profiler, address _soul) external view returns (bool) {

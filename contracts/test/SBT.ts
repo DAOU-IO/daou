@@ -79,6 +79,13 @@ describe('SBT', function () {
         expect(profiles[0]).to.equal(user1.address);
     });
 
+    it('3rd party should be able to update Profile that it created', async function () {
+        const soul = {identity:'Alice', url:'https://duckduckgo.com/', timestamp: new Date().getTime()}; 
+        await sbt.connect(user1).updateProfile(user2.address, soul);
+        const soulProfile = await sbt.getProfile(user1.address, user2.address);
+        expect(soulProfile.url).to.equal("https://duckduckgo.com/");
+    });
+
     it('User should be able to delete their profiles data', async function () {
         await sbt.connect(user2).removeProfile(user1.address,user2.address);
     });
