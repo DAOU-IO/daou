@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 //From: https://github.com/jamesbachini/Solidity-SBT-Soul-Bound-Token/blob/main/contracts/SBT.sol
 
@@ -11,13 +11,9 @@ pragma solidity ^0.8.4;
  * I propose for a rename to Non-Transferable Tokens NTT's
  */
 
-contract SBT {
+import "./SoulStruct.sol";
 
-    struct Soul {
-        string identity;
-        string url;
-        uint256 timestamp;
-    }
+contract SBT {
 
     mapping (address => Soul) private souls;
     mapping (address => mapping (address => Soul)) soulProfiles;

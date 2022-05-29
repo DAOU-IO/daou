@@ -29,7 +29,7 @@ describe('SBT', function () {
     });
 
     it('Should mint a new soul', async function () {
-        const soul = {identity:'James Bachini', url:'https://jamesbachini.com', timestamp: new Date().getTime()};
+        const soul = {identity:'James Bachini', url:'https://jamesbachini.com', score: 82, timestamp: new Date().getTime()};
         await sbt.mint(user1.address,soul);
     });
 
@@ -44,7 +44,7 @@ describe('SBT', function () {
     });
 
     it('Operator should be able to update soul', async function () {
-        const soul = {identity:'James Bachini', url:'https://jamesbachini.com', timestamp: new Date().getTime()};
+        const soul = {identity:'James Bachini', url:'https://jamesbachini.com', score: 72,timestamp: new Date().getTime()};
         await sbt.update(user1.address,soul);
     });
 
@@ -61,12 +61,12 @@ describe('SBT', function () {
     });
 
     it('Should mint another soul for user2', async function () {
-        const soul = {identity:'Alice Smith', url:'https://github.com', timestamp: new Date().getTime()};
+        const soul = {identity:'Alice Smith', url:'https://github.com', score: 80, timestamp: new Date().getTime()};
         await sbt.mint(user2.address,soul);
     });
 
     it('3rd party should be able to create a profile', async function () {
-        const soul = {identity:'Alice', url:'https://google.com', timestamp: new Date().getTime()};
+        const soul = {identity:'Alice', url:'https://google.com', score: 92,  timestamp: new Date().getTime()};
         await sbt.connect(user1).setProfile(user2.address,soul);
     });
 
@@ -79,8 +79,13 @@ describe('SBT', function () {
         expect(profiles[0]).to.equal(user1.address);
     });
 
+    it('getProfile should return profile', async function () {
+        const soul = await sbt.getProfile(user1.address,user2.address);
+        expect(soul[2]).to.equal(92);
+    });
+
     it('3rd party should be able to update Profile that it created', async function () {
-        const soul = {identity:'Alice', url:'https://duckduckgo.com/', timestamp: new Date().getTime()}; 
+        const soul = {identity:'Alice', url:'https://duckduckgo.com/', score: 67, timestamp: new Date().getTime()}; 
         await sbt.connect(user1).updateProfile(user2.address, soul);
         const soulProfile = await sbt.getProfile(user1.address, user2.address);
         expect(soulProfile.url).to.equal("https://duckduckgo.com/");
@@ -95,7 +100,7 @@ describe('SBT', function () {
     });
 
     it('burn should remove all profiles too', async function () {
-        const soul = {identity:'Bob Smith', url:'https://ethereum.org', timestamp: new Date().getTime()};
+        const soul = {identity:'Bob Smith', url:'https://ethereum.org', score: 37, timestamp: new Date().getTime()};
         await sbt.mint(user3.address,soul);
         await sbt.connect(user1).setProfile(user3.address,soul);
         expect(await sbt.hasProfile(user1.address,user3.address)).to.equal(true);
