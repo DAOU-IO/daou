@@ -47,6 +47,7 @@ contract SocialOracle {
     // who submit the social data
     mapping(address => mapping(address => SocialData)) vSocialData;
     mapping(address => mapping(address => SocialDataInput)) vSocialDataInput;
+    mapping(address => SocialDataInput) outputs;
     address[] submitAddrs;
 
     constructor(string memory _name) {
@@ -63,6 +64,21 @@ contract SocialOracle {
     // getDaoInfo
     function getDaoInfo(address _dao) external view returns (Dao memory) {
         return daos[_dao];
+    }
+
+    function prepareOutput(address _dao) internal {
+        for(uint i = 0; i < daoState[_dao].participants.length; i++){
+            address addr = daoState[_dao].participants[i];
+            outputs[_dao].scores.push(daoState[_dao].scores[addr]);
+            outputs[_dao].names.push(daoState[_dao].names[addr]);
+            outputs[_dao].urls.push(daoState[_dao].urls[addr]);
+        }
+    }
+
+    // getDaoState
+    function getDaoState(address _dao) external view returns (SocialDataInput memory) {
+        return outputs[_dao];
+        // return daoState[_dao].scores[_member];
     }
 
     // Add members to a dao.
@@ -216,12 +232,14 @@ contract SocialOracle {
     }
 
     // End this round social oralce.
-    function end(address _dao, address _SBTAddr) external {
+    function end(address _dao, address _SBTAddr) external returns (bool) {
         require(msg.sender == daos[_dao].manager, "Only manager have rights to end a social oracle");
         bool isVetified = verify(_dao);
         if (isVetified) {
             updateSBT(_dao, _SBTAddr);
         }
         started[_dao] = false;
+        prepareOutput(_dao);
+        return isVetified;
     }
 }

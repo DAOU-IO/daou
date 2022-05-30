@@ -15,6 +15,7 @@ describe("SocialOracle", function() {
     let members_addr: string[] = [];
     let membersNotJoin_addr: string[] = []; 
     let sbt: SBT;
+    
 
     before(async () => {
         [dao, manager, member1, member2, member3, member4, member5, member6, member7, member8, member9] = await ethers.getSigners();
@@ -122,8 +123,12 @@ describe("SocialOracle", function() {
     });
 
     it('Manger should be able to end a social oracle', async function() {
-        expect(await so.getStarted(dao.address)).to.equal(true);
-        await so.connect(manager).end(dao.address, sbt.address);
-        expect(await so.getStarted(dao.address)).to.equal(false);
+        expect(await so.callStatic.getStarted(dao.address)).to.equal(true);
+        expect(await so.connect(manager).callStatic.end(dao.address, sbt.address)).to.equal(true);
+        const daoState = await so.callStatic.getDaoState(dao.address);
+        // 为什么 daoState 是空的，到时候用 hardhat/console.log 试试
+        console.log(daoState);
+        expect(daoState.scores[1]).to.equal(2);
+        expect(await so.callStatic.getStarted(dao.address)).to.equal(false);
     });
 });

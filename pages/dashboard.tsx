@@ -1,6 +1,5 @@
 import { Box, Center, Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
-import styled from "@emotion/styled";
 import { SettingsIcon, AddIcon } from '@chakra-ui/icons';
 import DaoNav from "../components/DaoNav";
 import React, { useState } from "react";
@@ -8,12 +7,31 @@ import DaoInfo from "../components/DaoContentComponents/DaoInfo";
 import DaoOnboard from "../components/DaoContentComponents/DaoOnboard";
 import DaoPeople from "../components/DaoContentComponents/DaoPeople";
 import DaoTwitter from "../components/DaoContentComponents/DaoTwitter";
+import DashboardHeader from "../components/DashboardHeader";
+import VerifyGroup from "../components/VerifyComponents/VerifyGroup";
+import VerifyDetails from "../components/VerifyComponents/VerifyDetails";
+import Graph from "../components/Graph";
 
 export type daoNavType = "info" | "people" | "twitter" | "onboard";
+export type dashboardType = "Dashboard" | "Details" | "Graph";
 
-export const Graph: React.ElementType = () => {
+export const Dashboard: React.ElementType = () => {
 
     const [daoNavState, setDaoNavState] = useState<daoNavType>("onboard");
+    const [dashboardState, setDashboardState] = useState<dashboardType>("Details");
+
+    const renderDashboardContent = (state: dashboardType) => {
+        switch(state){
+            case "Dashboard":
+                return <VerifyGroup/>;
+            case "Details":
+                return <VerifyDetails/>;
+            case "Graph":
+                return <Graph/>;
+            default:
+                return <VerifyGroup/>;
+        }
+    };
 
     const renderDaoContent = (daoNavState:daoNavType) => {
         switch(daoNavState){
@@ -54,7 +72,10 @@ export const Graph: React.ElementType = () => {
                 </Box>
             </Box>
             <Box w="70%" h="100vh" >
-
+                <DashboardHeader dashboardState={dashboardState}  setDashboardState={setDashboardState}/>
+                <Box marginX="5vh" >
+                    {renderDashboardContent(dashboardState)}
+                </Box>
             </Box>
             <Box w="25%" h="100vh" borderLeft="2px" borderColor='whiteAlpha.300' >
                 <DaoNav daoNavState={daoNavState} setDaoNavState={setDaoNavState} />
@@ -79,4 +100,4 @@ const CenterImage: React.ElementType = ({src, alt, borderRight}): JSX.Element =>
     );
 }
 
-export default Graph;
+export default Dashboard;

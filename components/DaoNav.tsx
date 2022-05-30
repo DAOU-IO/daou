@@ -1,5 +1,5 @@
 import { Center, Flex } from "@chakra-ui/layout";
-import { daoNavType } from "../pages/graph";
+import { daoNavType } from "../pages/dashboard";
 import { Icon } from "@iconify/react";
 
 interface DaoNavProps {
