@@ -5,8 +5,16 @@ import { useTable, useSortBy } from 'react-table';
 import MembersBar from "../MembersBar";
 import SocialDataTable from "../SocialDataTable";
 import SocialDataList from "../SocialDataList";
+import { ethers } from "ethers";
 
 const VerifyDetails = () => {
+
+    const handleClick = async () => {
+        
+
+    };
+
+
 
     return(
         <Box 

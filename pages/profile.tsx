@@ -180,7 +180,7 @@ export const Profile = () => {
                         <Calendar values={values} until={until} weekNames={weekNames} monthNames={monthNames} panelColors={panelColors}  />
                     </Box>
                     <Box m="3vh" >
-                        <Text fontSize="2xl" color="whiteAlpha.900" fontWeight="bold" pt="2vh" >Details</Text>
+                        <Text fontSize="2xl" color="whiteAlpha.900" fontWeight="bold" pt="2vh" >Data Verified</Text>
                         <SocialDataTable2 />
                     </Box>
                 </Box>

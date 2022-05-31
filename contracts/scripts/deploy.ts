@@ -13,13 +13,17 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
+  const SBT = await ethers.getContractFactory("SBT");
   // We get the contract to deploy
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const SocialOracle = await ethers.getContractFactory("SocialOracle");
+  const sbt = await SBT.deploy("Soulbound Token","SBT");
+  const so = await SocialOracle.deploy("DAOU Social Oracle");
+  
+  await sbt.deployed();
+  await so.deployed();
 
-  await greeter.deployed();
-
-  console.log("Greeter deployed to:", greeter.address);
+  console.log("Soulbound Token deployed to:", sbt.address);
+  console.log("DAOU Social Oracle deployed to:", sbt.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
