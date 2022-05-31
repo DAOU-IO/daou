@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import WalletButton from '../components/WalletButton';
+import GotoButton from '../components/GotoButton';
 
 import { 
       Box, 
@@ -31,21 +32,29 @@ const Home: NextPage = () => {
             <Text fontSize='6xl' color="whiteAlpha.900" >DAOU</Text>
           </Box>
           <Box mt="3vh" >
-            <Text fontSize='6xl' color="whiteAlpha.900" >Make Frens in DAOs.</Text>
+            <Text fontSize='6xl' color="whiteAlpha.900" >Maximize your social capital</Text>
           </Box>
         </Box>
-        <Box mt='40vh' pl="5vh" >
-          <Text fontSize='1xl' color="whiteAlpha.900" >
-            Made With ❤️ By <Link href='https://twitter.com/fifteen42_' >Tingfei</Link>
-          </Text>
-          <Link href='https://github.com/DAOU-IO/daou' pb="5px" >
-            <Image
-              boxSize='24px'
-              src='/images/Github.png'
-              alt='Github logo'
-            />
-          </Link>
+        <Box mt="10vh" >
+          <GotoButton />
         </Box>
+        <Flex mt='20vh'>
+          <Text fontSize='1xl' color="whiteAlpha.900" mr="2vh" >
+            Made With ❤️ By <Link href='https://twitter.com/fifteen42_' >Tingfei.</Link>
+          </Text>
+          <Flex>
+            <Text fontSize='1xl' color="whiteAlpha.900" mr="1vh" >
+              Find code in 
+            </Text>
+            <Link href='https://github.com/DAOU-IO/daou' pb="5px" >
+              <Image
+                boxSize='22px'
+                src='/images/Github.png'
+                alt='Github logo'
+              />
+            </Link>
+          </Flex>
+        </Flex>
       </Box>
       <LogoImage
         src="/images/bankless.png"

@@ -10,44 +10,32 @@ export type UnitConversion = {
     contributions: number;
 };
 
-const SocialDataTable = () => {
+const SocialDataTable2 = () => {
     const data: UnitConversion[] = React.useMemo(
         () => [
           {
-            username: 'fifteen42.eth',
-            activites: 5,
-            connectios: 2,
+            username: 'Discord',
+            activites: 15,
+            connectios: 14,
             contributions: 3,
           },
           {
-            username: 'arden.eth',
-            activites: 1,
-            connectios: 2,
+            username: 'Forum',
+            activites: 11,
+            connectios: 6,
             contributions: 1,
           },
           {
-            username: 'julio.eth',
-            activites: 0,
+            username: 'Github',
+            activites: 8,
             connectios: 3,
-            contributions: 6,
+            contributions: 26,
           },
           {
-            username: 'columbus.eth',
-            activites: 2,
+            username: 'Twitter',
+            activites: 5,
             connectios: 9,
             contributions: 1,
-          },
-          {
-            username: 'dustin.eth',
-            activites: 6,
-            connectios: 2,
-            contributions: 3,
-          },
-          {
-            username: 'bettye.eth',
-            activites: 1,
-            connectios: 2,
-            contributions: 2,
           },
         ],
         [],
@@ -56,7 +44,7 @@ const SocialDataTable = () => {
     const columns: Column<UnitConversion>[] = React.useMemo(
         () => [
           {
-            Header: 'Username',
+            Header: 'Data Source',
             accessor: 'username',
           },
           {
@@ -129,4 +117,4 @@ const SocialDataTable = () => {
 
 };
 
-export default SocialDataTable;
+export default SocialDataTable2;

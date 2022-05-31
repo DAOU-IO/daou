@@ -4,6 +4,7 @@ import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
 import MembersBar from "../MembersBar";
 import SocialDataTable from "../SocialDataTable";
+import SocialDataList from "../SocialDataList";
 
 const VerifyDetails = () => {
 
@@ -13,6 +14,13 @@ const VerifyDetails = () => {
             borderColor="whiteAlpha.300"
             borderRadius="20"
             p="2vh"
+            maxHeight='85vh'
+            overflowY="auto"
+            css={{
+                '&::-webkit-scrollbar' : {
+                    display: "none"
+                }
+            }}
         >
             <Text fontSize="2xl" color="whiteAlpha.900" fontWeight="bold" >
                 [SO2093457242345] Verify Social Data From Discord, Github, Twitter, Forum
@@ -26,12 +34,8 @@ const VerifyDetails = () => {
                     Active
                 </AState>
             </Flex>
-            <MembersBar />
-            <UnorderedList m="2vh" color="whiteAlpha.900">
-                <ListItem><Text fontWeight="bold">Activities: messages in discord, </Text></ListItem>
-                <ListItem><Text fontWeight="bold">Connections: friends in discord and twitter, </Text></ListItem>
-                <ListItem><Text fontWeight="bold">Contributions: Github commits, Dework tasks</Text></ListItem>
-            </UnorderedList>
+            <MembersBar s={5} />
+           
             <Flex mt="5vh" >
                 <Box
                     border="1px" 
@@ -43,24 +47,18 @@ const VerifyDetails = () => {
                 </Box>
                 <Spacer />
                 <Box p="2vh" >
-                    <Text fontSize="1xl" color="whiteAlpha.900" >
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                        Some introductions about social oracle.
-                    </Text>
-                    <Button  mt="13vh" colorScheme='purple' variant='solid' size='lg' width="full" height="5vh">
+                    <UnorderedList color="whiteAlpha.900">
+                        <ListItem><Text fontWeight="bold">Activities: messages in discord, questions in the forum, votes on snapshop </Text></ListItem>
+                        <ListItem><Text fontWeight="bold">Connections: friends in discord and twitter</Text></ListItem>
+                        <ListItem><Text fontWeight="bold">Contributions: Github commits, Dework tasks</Text></ListItem>
+                    </UnorderedList>
+                    <Button  mt="22vh" colorScheme='purple' variant='solid' size='lg' width="full" height="5vh">
                         Verify
                     </Button>
                 </Box>
             </Flex>
-            <Box >
-                    
+            <Box mt="5vh" >
+                <SocialDataList />
             </Box>
         </Box>
     );

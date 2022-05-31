@@ -15,10 +15,10 @@ import Graph from "../components/Graph";
 export type daoNavType = "info" | "people" | "twitter" | "onboard";
 export type dashboardType = "Dashboard" | "Details" | "Graph";
 
-export const Dashboard: React.ElementType = () => {
+export const Details: React.ElementType = () => {
 
     const [daoNavState, setDaoNavState] = useState<daoNavType>("people");
-    const [dashboardState, setDashboardState] = useState<dashboardType>("Dashboard");
+    const [dashboardState, setDashboardState] = useState<dashboardType>("Details");
 
     const renderDashboardContent = (state: dashboardType) => {
         switch(state){
@@ -100,4 +100,4 @@ const CenterImage: React.ElementType = ({src, alt, borderRight}): JSX.Element =>
     );
 }
 
-export default Dashboard;
+export default Details;

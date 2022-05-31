@@ -2,9 +2,34 @@ import {Flex, Box, Text, Select, Spacer, AvatarGroup, Avatar } from "@chakra-ui/
 import styled from "@emotion/styled";
 import { Icon } from "@iconify/react";
 import MembersBar from "../MembersBar";
+import Link from "next/link";
 
-const VerifyCard = () => {
+export interface VerifyCardProps {
+    closed: boolean;
+    sparks: number;
+    startTime: string;
+    endTime: string;
+};
+
+const renderState = (closed: boolean) => {
+    if (closed) {
+        return(
+            <VState>
+                Verified
+            </VState>
+        );
+    } else {
+        return(
+            <AState>
+                Active
+            </AState>
+        );
+    }
+};
+
+const VerifyCard: React.ElementType = ({closed, sparks,startTime, endTime}: VerifyCardProps) => {
     return(
+        <Link href="details" >
         <CardBox 
             border="1px" 
             borderColor="whiteAlpha.700"
@@ -24,12 +49,10 @@ const VerifyCard = () => {
                 </Box>
                 <Spacer/>
                 <Box>
-                    <VState>
-                        Verified
-                    </VState>
+                    {renderState(closed)}
                 </Box>
             </Flex>
-            <MembersBar />
+            <MembersBar s={sparks} />
             <Flex>
                 <Box>
                     <Text fontSize="1xl" color="gray" fontWeight="bold" >
@@ -39,13 +62,16 @@ const VerifyCard = () => {
                 <Spacer />
                 <Box>
                     <Text fontSize="1xl" color="gray" fontWeight="bold" >
-                        2022-05-30 17:08:06
+                        {startTime}
                     </Text>
                 </Box>
             </Flex>
         </CardBox>
+        </Link>
     );
 };
+
+
 
 export const VState = styled(Box)`
     color: white;
