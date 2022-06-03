@@ -9,7 +9,6 @@ DAOU uses Soulbound Token and Social Oracle to convert your activity data in DAO
 
 ![daou.png](https://s2.loli.net/2022/05/31/6wTpevNtSBqY8u4.png)
 
-
 ### Social Capital
 
 Briefly: When you want to do something, how many people are willing to support you based on their understanding of you and social identity.

@@ -36,7 +36,7 @@ const MembersBar: React.ElementType = ({s}:MembersBarProps) => {
         <Spacer />
         <Box marginRight="1vh" >
             <Text fontSize="2xl" color="whiteAlpha.900" >
-                Validators:
+                Verifiers:
             </Text>
         </Box>
         <AvatarGroup size='sm' max={3} >

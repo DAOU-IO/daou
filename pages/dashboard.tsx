@@ -17,7 +17,7 @@ export type dashboardType = "Dashboard" | "Details" | "Graph";
 
 export const Dashboard: React.ElementType = () => {
 
-    const [daoNavState, setDaoNavState] = useState<daoNavType>("people");
+    const [daoNavState, setDaoNavState] = useState<daoNavType>("twitter");
     const [dashboardState, setDashboardState] = useState<dashboardType>("Dashboard");
 
     const renderDashboardContent = (state: dashboardType) => {
